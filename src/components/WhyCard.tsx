@@ -28,7 +28,7 @@ export function WhyCardDefs() {
 
 function Bell({ className = '' }: { className?: string }) {
   return (
-    <svg viewBox="0 0 20 44" className={`bell-swing w-5 drop-shadow-[0_2px_3px_rgb(0_0_0/0.5)] sm:w-6 ${className}`} aria-hidden="true">
+    <svg viewBox="0 0 20 44" className={`bell-swing w-5 max-[559px]:w-3.5 drop-shadow-[0_2px_3px_rgb(0_0_0/0.5)] sm:w-6 ${className}`} aria-hidden="true">
       <line x1="10" y1="0" x2="10" y2="16" stroke="#e8b84a" strokeWidth="1.2" strokeDasharray="2 1.5" />
       <circle cx="10" cy="17" r="2" fill="#e8b84a" />
       <path d="M10 18c-4 0-5.5 4-5.5 9.5 0 3-1.5 4.5-2.5 5.5h16c-1-1-2.5-2.5-2.5-5.5C15.5 22 14 18 10 18z" fill="url(#bell-gold)" stroke="#8a5a12" strokeWidth="0.6" />
@@ -53,28 +53,28 @@ export function Corner({ className = '' }: { className?: string }) {
 
 function StarBadge({ n }: { n: number }) {
   return (
-    <span className="absolute left-1/2 top-0 z-10 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center">
+    <span className="absolute left-1/2 top-0 z-10 grid h-14 w-14 max-[559px]:h-10 max-[559px]:w-10 -translate-x-1/2 -translate-y-1/2 place-items-center">
       <span className="absolute inset-1.5 rotate-45 rounded-md border-2 border-[var(--gold)] bg-[var(--maroon)]" />
       <span className="absolute inset-1.5 rounded-md border-2 border-[var(--gold)] bg-[var(--maroon)]" />
-      <span className="absolute inset-3 rounded-full border border-[var(--gold)]/50" />
-      <span className="relative font-display text-lg text-[var(--gold)]">{String(n).padStart(2, '0')}</span>
+      <span className="absolute inset-3 rounded-full border border-[var(--gold)]/50 max-[559px]:inset-2.5" />
+      <span className="relative font-display text-lg text-[var(--gold)] max-[559px]:text-sm">{String(n).padStart(2, '0')}</span>
     </span>
   );
 }
 
 export default function WhyCard({ icon, label, text, chaupai, image, index }: WhyCardData & { index: number }) {
   return (
-    <div className="group relative mx-auto h-full w-full max-w-[19rem] pt-7">
+    <div className="group relative mx-auto h-full w-full max-w-[19rem] pt-7 max-[559px]:pt-5">
       {/* gold frame */}
       <div className="relative flex h-full flex-col rounded-[1.6rem] bg-gradient-to-b from-[#f7d77a] via-[#d9a43a] to-[#b8781c] p-[2px] shadow-[0_28px_60px_-34px_var(--maroon)] transition-transform duration-500 group-hover:-translate-y-2">
-        <div className="relative flex flex-1 flex-col rounded-[calc(1.6rem-2px)] bg-[radial-gradient(ellipse_at_top,#fffaf0,var(--cream)_55%,#f6e6cc)] px-3 pb-4 pt-3">
+        <div className="relative flex flex-1 flex-col rounded-[calc(1.6rem-2px)] bg-[radial-gradient(ellipse_at_top,#fffaf0,var(--cream)_55%,#f6e6cc)] px-3 pb-4 pt-3 max-[559px]:px-1.5 max-[559px]:pb-3">
           {/* inner hairline */}
           <div className="pointer-events-none absolute inset-1.5 rounded-[1.35rem] border border-[var(--gold)]/45" />
-          <Corner className="bottom-1 left-1" />
-          <Corner className="bottom-1 right-1 -scale-x-100" />
+          <Corner className="bottom-1 left-1 max-[559px]:h-6 max-[559px]:w-6" />
+          <Corner className="bottom-1 right-1 -scale-x-100 max-[559px]:h-6 max-[559px]:w-6" />
 
           {/* arched photo with a gold edge */}
-          <div className="relative -mt-9">
+          <div className="relative -mt-9 max-[559px]:-mt-7">
             <div className="aspect-[1/1.02] bg-gradient-to-b from-[#ffe9a8] via-[#d9a43a] to-[#b8781c] p-[3px] [clip-path:url(#why-arch)]">
               <div className="relative h-full w-full overflow-hidden [clip-path:url(#why-arch)]">
                 <Image
@@ -82,7 +82,7 @@ export default function WhyCard({ icon, label, text, chaupai, image, index }: Wh
                   alt={label}
                   fill
                   placeholder="blur"
-                  sizes="(min-width: 1024px) 300px, (min-width: 480px) 45vw, 90vw"
+                  sizes="(min-width: 1024px) 300px, 50vw"
                   className="object-cover object-top transition-transform duration-[1.2s] group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--maroon)]/35 via-transparent to-transparent" />
@@ -93,32 +93,33 @@ export default function WhyCard({ icon, label, text, chaupai, image, index }: Wh
             <Bell className="absolute right-[12%] top-[11%] origin-top [animation-delay:-1.4s]" />
 
             {/* icon in a maroon medallion, sitting on the arch's lower edge */}
-            <span className="absolute bottom-0 left-1/2 grid h-[4.5rem] w-[4.5rem] -translate-x-1/2 translate-y-1/3 place-items-center rounded-full bg-gradient-to-b from-[#f7d77a] to-[#b8781c] p-[3px] shadow-[0_8px_20px_-6px_var(--maroon)]">
-              <span className="grid h-full w-full place-items-center rounded-full border-2 border-[var(--cream)] bg-[radial-gradient(circle_at_35%_30%,#9b2c1c,var(--maroon))] text-[1.9rem] text-[#f7d77a] transition-transform duration-700 group-hover:rotate-[360deg]">
+            <span className="absolute bottom-0 left-1/2 grid h-[4.5rem] w-[4.5rem] max-[559px]:h-12 max-[559px]:w-12 -translate-x-1/2 translate-y-1/3 place-items-center rounded-full bg-gradient-to-b from-[#f7d77a] to-[#b8781c] p-[3px] shadow-[0_8px_20px_-6px_var(--maroon)]">
+              <span className="grid h-full w-full place-items-center rounded-full border-2 border-[var(--cream)] bg-[radial-gradient(circle_at_35%_30%,#9b2c1c,var(--maroon))] text-[1.9rem] max-[559px]:text-xl text-[#f7d77a] transition-transform duration-700 group-hover:rotate-[360deg]">
                 <Icon name={icon} />
               </span>
             </span>
           </div>
 
-          <div className="relative flex flex-1 flex-col px-2 pt-10 text-center">
-            <p className="font-display text-[1.6rem] leading-tight text-[var(--maroon)]">{label}</p>
-            <p className="mt-2 flex-1 text-[0.95rem] leading-relaxed text-[var(--maroon)]/80">{text}</p>
+          <div className="relative flex flex-1 flex-col px-2 pt-10 text-center max-[559px]:px-0.5 max-[559px]:pt-6">
+            <p className="font-display text-[1.6rem] leading-tight text-[var(--maroon)] max-[559px]:text-[1.1rem]">{label}</p>
+            <p className="mt-2 flex-1 text-[0.95rem] leading-relaxed text-[var(--maroon)]/80 max-[559px]:mt-1 max-[559px]:text-[0.78rem] max-[559px]:leading-snug">{text}</p>
 
-            <div className="mt-4 flex items-center gap-2 text-[var(--primary)]" aria-hidden="true">
+            <div className="mt-4 flex items-center gap-2 text-[var(--primary)] max-[559px]:mt-2.5" aria-hidden="true">
               <span className="h-px flex-1 bg-gradient-to-r from-transparent to-[var(--gold)]" />
               <Icon name="lotus" className="text-lg" />
               <span className="h-px flex-1 bg-gradient-to-l from-transparent to-[var(--gold)]" />
             </div>
 
             {/* chaupai ribbon with a lotus at each end */}
-            <div className="relative mx-1 mt-3">
-              <p className="rounded-full border border-[var(--gold)] bg-gradient-to-b from-[#9b2c1c] to-[var(--maroon)] px-7 py-2 font-display text-[0.95rem] text-[#fff1cf] shadow-[inset_0_1px_0_rgb(255_255_255/0.2)]">
-                ॥ {chaupai} ॥
+            <div className="relative mx-1 mt-3 max-[559px]:mx-0 max-[559px]:mt-2">
+              <p className="rounded-full border border-[var(--gold)] bg-gradient-to-b from-[#9b2c1c] to-[var(--maroon)] px-7 py-2 font-display text-[0.95rem] text-[#fff1cf] max-[559px]:px-3.5 max-[559px]:py-1.5 max-[559px]:text-[0.66rem] max-[559px]:leading-snug shadow-[inset_0_1px_0_rgb(255_255_255/0.2)]">
+                {/* non-breaking spaces keep the ॥ marks attached when the line wraps */}
+                ॥&nbsp;{chaupai}&nbsp;॥
               </p>
-              <span className="absolute -left-3 top-1/2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-full border border-[var(--gold)] bg-[var(--cream)] text-lg text-[var(--sindoor)]">
+              <span className="absolute -left-3 top-1/2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-full border border-[var(--gold)] bg-[var(--cream)] text-lg text-[var(--sindoor)] max-[559px]:-left-2 max-[559px]:h-5 max-[559px]:w-5 max-[559px]:text-xs">
                 <Icon name="lotus" />
               </span>
-              <span className="absolute -right-3 top-1/2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-full border border-[var(--gold)] bg-[var(--cream)] text-lg text-[var(--sindoor)]">
+              <span className="absolute -right-3 top-1/2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-full border border-[var(--gold)] bg-[var(--cream)] text-lg text-[var(--sindoor)] max-[559px]:-right-2 max-[559px]:h-5 max-[559px]:w-5 max-[559px]:text-xs">
                 <Icon name="lotus" />
               </span>
             </div>

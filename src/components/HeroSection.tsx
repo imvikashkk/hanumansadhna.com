@@ -329,7 +329,7 @@ export default function HeroSection() {
               </h2>
             </Reveal>
             <WhyCardDefs />
-            <div className="mt-10 grid w-full max-w-6xl grid-cols-1 gap-x-5 gap-y-8 min-[560px]:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-10 grid w-full max-w-6xl grid-cols-2 gap-x-3 gap-y-6 min-[560px]:gap-x-5 min-[560px]:gap-y-8 lg:grid-cols-4">
               {WHY.map((card, idx) => (
                 <Reveal key={card.label} delay={idx * 90} className="h-full">
                   <WhyCard {...card} index={idx} />

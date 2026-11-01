@@ -6,7 +6,8 @@ import Image, { type StaticImageData } from 'next/image';
 export default function ParallaxImage({ src, className = '' }: { src: StaticImageData; className?: string }) {
   return (
     <div className="absolute inset-0 [clip-path:inset(0)]" aria-hidden="true">
-      <div className="fixed inset-0">
+      {/* fixed (true parallax) only on large screens — on phones it scrolls normally, far cheaper to paint */}
+      <div className="absolute inset-0 lg:fixed">
         <Image src={src} alt="" fill sizes="100vw" placeholder="blur" className={`object-cover ${className}`} />
       </div>
     </div>

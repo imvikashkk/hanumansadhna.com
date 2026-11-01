@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Hind, Rozha_One } from 'next/font/google';
+import { MandalaDefs } from '@/components/CreamDecor';
 import MetaPixel from '@/components/MetaPixel';
 import { SITE } from '@/data/site';
 import './globals.css';
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="hi" className={`${rozha.variable} ${hind.variable} h-full antialiased`}>
       <body className="min-h-full">
+        <MandalaDefs />
         <MetaPixel />
         {children}
       </body>

@@ -5,7 +5,7 @@ import { DAYS } from '@/data/days';
 import { trackCustom } from '@/lib/pixel';
 import CheckoutButton from '../CheckoutButton';
 import Icon from '../Icon';
-import { Corner } from '../WhyCard';
+import { Corner } from '../CreamDecor';
 
 // 40-day calendar: tap any day to see that day's guidance. Gold-framed, with a
 // maroon panel for the chosen day — matching the devotional cards above.

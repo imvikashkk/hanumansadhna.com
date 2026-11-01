@@ -1,10 +1,7 @@
 import Image from 'next/image';
-import { SADHAK_PILLARS } from '@/data/content';
 import { SECTION_BG } from '@/data/media';
 import { SITE } from '@/data/site';
 import CreamDecor from './CreamDecor';
-import Icon from './Icon';
-import PillarMotif from './PillarMotif';
 import { Reveal } from './Reveal';
 
 // "हम हैं हनुमान साधक" — who we are, in the brand's own voice.
@@ -70,25 +67,6 @@ export default function AboutSection() {
               </blockquote>
             </Reveal>
           </div>
-        </div>
-
-        {/* Four pillars of a sadhak */}
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-          {SADHAK_PILLARS.map((p, i) => (
-            <Reveal key={p.title} delay={i * 90}>
-              <div className="group relative flex h-full min-h-52 flex-col justify-end overflow-hidden rounded-3xl border border-[var(--gold)]/50 bg-gradient-to-br from-white via-[#fff6e8] to-[#fbe3c4] p-4 shadow-[0_22px_45px_-30px_var(--maroon)] transition-all duration-500 hover:-translate-y-1 hover:border-[var(--gold)] sm:min-h-60 sm:p-5">
-                <PillarMotif index={i} />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#fff6e8] via-[#fff6e8]/40 to-transparent" />
-                <div className="relative">
-                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-ember text-xl text-[var(--primary-foreground)] shadow-glow sm:h-11 sm:w-11">
-                    <Icon name={p.icon} />
-                  </span>
-                  <h3 className="mt-2 font-display text-2xl text-[var(--maroon)]">{p.title}</h3>
-                  <p className="mt-1 text-sm leading-snug text-[var(--maroon)]/75 sm:text-base">{p.text}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
         </div>
       </div>
     </section>

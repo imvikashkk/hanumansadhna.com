@@ -193,8 +193,6 @@
 @keyframes diya-flicker { 0%, 100% { transform: scale(1, 1); } 40% { transform: scale(0.94, 1.06); } 70% { transform: scale(1.04, 0.96); } }
 .diya-flicker { transform-box: fill-box; transform-origin: 50% 100%; animation: diya-flicker 1.6s ease-in-out infinite; }
 /* Temple bells swaying gently on their chains */
-@keyframes bell-swing { 0%, 100% { transform: rotate(6deg); } 50% { transform: rotate(-6deg); } }
-.bell-swing { animation: bell-swing 2.8s ease-in-out infinite; }
 .wish-glow { animation: wish-glow 9s ease-in-out infinite; }
 
 /* ── Brahmand: shooting stars ── */
@@ -258,8 +256,13 @@
 }
 .ticker-in { animation: ticker-in 500ms cubic-bezier(0.22, 1, 0.36, 1) both; }
 
+/* PauseOffscreen marks sections that are off screen — freeze their decorative animations. */
+[data-paused] *,
+[data-paused] *::before,
+[data-paused] *::after { animation-play-state: paused !important; }
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee, .animate-spin-slow, .animate-float, .animate-twinkle, .animate-orbit, .animate-orbit-rev, .cta-pulse, .cta-shine::after,
-  .hero-in, .hero-zoom, .text-ember-flow, .border-sweep, .wish-glow, .bell-swing, .diya-flicker, .ticker-in, .sankalp-nudge { animation: none !important; }
+  .hero-in, .hero-zoom, .text-ember-flow, .border-sweep, .wish-glow, .diya-flicker, .ticker-in, .sankalp-nudge { animation: none !important; }
   .ember, .shooting-star, .petal { display: none; }
 }

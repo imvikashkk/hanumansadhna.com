@@ -8,13 +8,12 @@ import jobCareer from '@/assets/Job-and-Career.png';
 import marriage from '@/assets/Marriage-and-Marital-Life.png';
 import protection from '@/assets/Protection-from-Fear-and-Dangers.png';
 import wealthBusiness from '@/assets/Wealth-and-Business.png';
-import { Mandala, Toran } from './CreamDecor';
+import { Corner, Mandala, Toran } from './CreamDecor';
 import CheckoutButton from './CheckoutButton';
 import Icon, { type IconName } from './Icon';
 import ParallaxImage from './ParallaxImage';
 import diye from '../../public/images/bg/diye.jpg';
 import { Reveal } from './Reveal';
-import { Corner } from './WhyCard';
 
 // "साधना का फल" — the wishes devotees bring to this sadhana, each paired with the
 // Hanuman Chalisa line it rests on. No numbers or promises: faith and regularity, in the Chalisa's own words.

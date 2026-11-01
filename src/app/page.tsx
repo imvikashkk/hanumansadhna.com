@@ -11,6 +11,7 @@ import JourneySection from '@/components/journey/JourneySection';
 import MarqueeStrip from '@/components/MarqueeStrip';
 import Navbar from '@/components/Navbar';
 import OfferSection from '@/components/OfferSection';
+import PauseOffscreen from '@/components/PauseOffscreen';
 import PhalSection from '@/components/PhalSection';
 import StickyCTA from '@/components/StickyCTA';
 import WhatsAppProofs from '@/components/WhatsAppProofs';
@@ -40,6 +41,7 @@ export default function Home() {
       </main>
       <StickyCTA />
       <EngagementTracker />
+      <PauseOffscreen />
     </>
   );
 }

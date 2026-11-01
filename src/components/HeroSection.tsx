@@ -1,8 +1,4 @@
 import Image from 'next/image';
-import aadhyatmikVikas from '@/assets/aadhyatmik-vikas.png';
-import aatmvishwas from '@/assets/aatmvishwas.png';
-import manKiShanti from '@/assets/man-ki-shanti.png';
-import sankatoKiRaksha from '@/assets/sankato-ki-raksha.png';
 import { HERO_BG, HERO_VIDEO } from '@/data/media';
 import { SITE } from '@/data/site';
 import CheckoutButton from './CheckoutButton';
@@ -11,7 +7,6 @@ import Icon, { type IconName } from './Icon';
 import { Reveal } from './Reveal';
 import Embers from './Embers';
 import HeroVideo from './video/HeroVideo';
-import WhyCard, { WhyCardDefs, type WhyCardData } from './WhyCard';
 
 // `text` only shows on desktop, where the benefits become cards.
 const BENEFITS: { icon: IconName; label: string; text: string }[] = [
@@ -42,46 +37,6 @@ const DAILY_POINTS: { icon: IconName; label: string }[] = [
 ];
 
 const WISHES = ['नौकरी', 'व्यापार', 'विवाह', 'संतान', 'धन', 'स्वास्थ्य', 'घर-जमीन', 'परीक्षा', 'विदेश'];
-
-// "यह साधना क्यों करें?" cards.
-const WHY: WhyCardData[] = [
-  {
-    icon: 'lotus',
-    label: 'मन की शांति',
-    text: 'रोज़ का पाठ और ध्यान मन की उथल-पुथल को शांत करता है — चिंता और बेचैनी से धीरे-धीरे मुक्ति मिलती है।',
-    chaupai: 'सब सुख लहै तुम्हारी सरना',
-    image: manKiShanti,
-  },
-  {
-    icon: 'bolt',
-    label: 'आत्मविश्वास',
-    text: 'बजरंगबली का स्मरण भीतर का साहस जगाता है — हर काम में नया उत्साह और भरोसा मिलता है।',
-    chaupai: 'महाबीर बिक्रम बजरंगी',
-    image: aatmvishwas,
-  },
-  {
-    icon: 'shield',
-    label: 'संकटों से रक्षा',
-    text: 'संकटमोचन की शरण में हर दिन — कठिन समय में भी मन को सहारा और हिम्मत प्राप्त होती है।',
-    chaupai: 'संकट तें हनुमान छुड़ावै',
-    image: sankatoKiRaksha,
-  },
-  {
-    icon: 'sparkle',
-    label: 'आध्यात्मिक विकास',
-    text: '40 दिन का नियमित भक्ति अभ्यास आपको भीतर से मज़बूत बनाता है — हर दिन श्रद्धा में नई गहराई मिलती है।',
-    chaupai: 'राम रसायन तुम्हरे पासा',
-    image: aadhyatmikVikas,
-  },
-];
-
-// `image` = card ke peeche ka abstract design (site ke rangon me bana hua).
-const HIGHLIGHTS: { icon: IconName; label: string; text: string; image: string }[] = [
-  { icon: 'headphones', label: 'Guided audio स्तुति', text: 'रोज़ नया audio — क्या पढ़ें, कैसे बैठें, सब बताया जाता है।', image: '/images/art/art-audio.jpg' },
-  { icon: 'pray', label: 'संकल्प & जप विधि', text: 'पहले दिन संकल्प, फिर रोज़ जप — पूरी विधि सरल शब्दों में।', image: '/images/art/art-jap.jpg' },
-  { icon: 'calendar', label: 'रोज़ का Progress', text: 'हर दिन की साधना दर्ज — 40 दिन की यात्रा एक नज़र में।', image: '/images/art/art-progress.jpg' },
-  { icon: 'medal', label: 'साधना पूर्ण प्रमाण-पत्र', text: '40 दिन पूरे होने पर साधना पूर्ण होने का प्रमाण-पत्र।', image: '/images/art/art-certificate.jpg' },
-];
 
 const STATS = [
   { value: SITE.devotees, label: 'भक्त जुड़े' },
@@ -321,50 +276,8 @@ export default function HeroSection() {
           </div>
 
           <div className="flex flex-col items-center text-center">
-            {/* Why do this sadhana */}
-            <Reveal className="mt-16 sm:mt-20">
-              <p className="font-display text-lg text-[var(--sindoor)] sm:text-xl">॥ जय बजरंगबली ॥</p>
-              <h2 className="mt-1 text-[1.9rem] text-[var(--maroon)] sm:text-4xl">
-                यह साधना <span className="text-[var(--sindoor)]">क्यों करें?</span>
-              </h2>
-            </Reveal>
-            <WhyCardDefs />
-            <div className="mt-10 grid w-full max-w-6xl grid-cols-2 gap-x-3 gap-y-6 min-[560px]:gap-x-5 min-[560px]:gap-y-8 lg:grid-cols-4">
-              {WHY.map((card, idx) => (
-                <Reveal key={card.label} delay={idx * 90} className="h-full">
-                  <WhyCard {...card} index={idx} />
-                </Reveal>
-              ))}
-            </div>
-
-            {/* Highlights */}
-            <Reveal className="mt-16 sm:mt-20">
-              <p className="font-display text-lg text-[var(--sindoor)] sm:text-xl">॥ साधना के साथ ॥</p>
-              <h2 className="mt-1 text-[1.9rem] text-[var(--maroon)] sm:text-4xl">
-                आपको <span className="text-[var(--sindoor)]">क्या मिलेगा?</span>
-              </h2>
-            </Reveal>
-            <div className="mt-8 grid w-full max-w-6xl grid-cols-1 gap-4 min-[480px]:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-              {HIGHLIGHTS.map(({ icon, label, text, image }, idx) => (
-                <Reveal key={label} delay={idx * 90}>
-                  <div className="group relative flex h-full min-h-48 flex-col justify-end overflow-hidden rounded-3xl border border-[var(--gold)]/50 bg-gradient-to-br from-white via-[#fff6e8] to-[#fbe3c4] p-5 text-left shadow-[0_22px_45px_-30px_var(--maroon)] transition-all duration-500 hover:-translate-y-1 hover:border-[var(--gold)] sm:min-h-60">
-                    {/* the art, faded into a soft pattern on the light card */}
-                    <Image src={image} alt="" fill sizes="(min-width: 1024px) 280px, (min-width: 480px) 45vw, 90vw" className="photo-zoom object-cover opacity-60 mix-blend-multiply [filter:invert(1)_hue-rotate(180deg)]" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#fff6e8] via-[#fff6e8]/50 to-transparent" />
-                    <span className="absolute right-4 top-3 font-display text-5xl text-[var(--sindoor)]/20">0{idx + 1}</span>
-                    <span className="relative grid h-12 w-12 place-items-center rounded-2xl bg-ember text-2xl text-[var(--primary-foreground)] shadow-glow">
-                      <Icon name={icon} />
-                    </span>
-                    <p className="relative mt-4 text-lg font-bold leading-tight text-[var(--maroon)]">{label}</p>
-                    <p className="relative mt-1.5 text-sm leading-relaxed text-[var(--maroon)]/75">{text}</p>
-                    <span className="relative mt-4 h-0.5 w-10 rounded-full bg-ember transition-all duration-500 group-hover:w-full" />
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-
             {/* Stats */}
-            <div className="mt-12 grid w-full max-w-2xl grid-cols-2 gap-6 sm:grid-cols-4">
+            <div className="mt-16 grid w-full max-w-2xl grid-cols-2 gap-6 sm:grid-cols-4">
               {STATS.map((stat, idx) => (
                 <Reveal key={stat.label} delay={idx * 100} className="text-center">
                   <div className="bg-gradient-to-br from-[var(--sindoor)] to-[var(--maroon)] bg-clip-text font-display text-3xl text-transparent sm:text-4xl">{stat.value}</div>

@@ -8,18 +8,40 @@ import { useVideoSource, VIDEO_PLAY_EVENT } from './useVideoSource';
 
 const HERO_ID = 'hero';
 
-// Autoplays muted on load (browsers block sound until the visitor interacts);
-// the first tap anywhere on the page turns the sound on.
+// Autoplays muted once it nears the screen (browsers block sound until the visitor interacts);
+// the first tap anywhere on the page turns the sound on. Nothing is downloaded until then,
+// and it pauses while scrolled away — the file is several MB.
 export default function HeroVideo({ video }: { video: VideoItem }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
+  const [near, setNear] = useState(false);
 
-  useVideoSource(ref, video.src, true);
+  useVideoSource(ref, video.src, near);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      setNear(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setNear(true);
+          if (el.muted && el.src) el.play().catch(() => {});
+        } else {
+          el.pause();
+        }
+      },
+      { rootMargin: '300px 0px' }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    el.play().catch(() => {});
 
     const stopListening = () => {
       document.removeEventListener('click', unmute);
@@ -56,6 +78,7 @@ export default function HeroVideo({ video }: { video: VideoItem }) {
         muted
         loop
         playsInline
+        preload="none"
         controls={!muted}
         onPlay={() => window.dispatchEvent(new CustomEvent(VIDEO_PLAY_EVENT, { detail: HERO_ID }))}
         onVolumeChange={(e) => {

@@ -43,23 +43,37 @@ export function Toran() {
   );
 }
 
-export function Mandala({ className = '', style }: { className?: string; style?: React.CSSProperties }) {
+// The mandala's paths live once in MandalaDefs (rendered in the root layout); every
+// Mandala is just a <use> of it — two dozen of them would otherwise add ~200 KB of SVG to the page.
+export function MandalaDefs() {
   const ring = (count: number, d: string, step = 360 / count) =>
     Array.from({ length: count }, (_, i) => <path key={i} d={d} transform={`rotate(${i * step})`} />);
   return (
-    <svg viewBox="-100 -100 200 200" fill="none" stroke="currentColor" strokeWidth="0.7" className={className} style={style} aria-hidden="true">
-      <circle r="98" />
-      <circle r="94" strokeDasharray="1.5 3" />
-      {ring(24, 'M0 -92 C9 -78 9 -64 0 -56 C-9 -64 -9 -78 0 -92Z')}
-      {Array.from({ length: 36 }, (_, i) => (
-        <circle key={i} cx="0" cy="-74" r="1.1" fill="currentColor" stroke="none" transform={`rotate(${i * 10 + 5})`} />
-      ))}
-      <circle r="56" />
-      {ring(16, 'M0 -56 Q13 -41 0 -28 Q-13 -41 0 -56Z')}
-      <circle r="28" />
-      {ring(12, 'M0 -28 Q6 -20 0 -12 Q-6 -20 0 -28Z')}
-      <circle r="12" />
-      <circle r="4" fill="currentColor" />
+    <svg width="0" height="0" className="absolute" aria-hidden="true">
+      <symbol id="mandala" viewBox="-100 -100 200 200">
+        <g fill="none" stroke="currentColor" strokeWidth="0.7">
+          <circle r="98" />
+          <circle r="94" strokeDasharray="1.5 3" />
+          {ring(24, 'M0 -92 C9 -78 9 -64 0 -56 C-9 -64 -9 -78 0 -92Z')}
+          {Array.from({ length: 36 }, (_, i) => (
+            <circle key={i} cx="0" cy="-74" r="1.1" fill="currentColor" stroke="none" transform={`rotate(${i * 10 + 5})`} />
+          ))}
+          <circle r="56" />
+          {ring(16, 'M0 -56 Q13 -41 0 -28 Q-13 -41 0 -56Z')}
+          <circle r="28" />
+          {ring(12, 'M0 -28 Q6 -20 0 -12 Q-6 -20 0 -28Z')}
+          <circle r="12" />
+          <circle r="4" fill="currentColor" />
+        </g>
+      </symbol>
+    </svg>
+  );
+}
+
+export function Mandala({ className = '', style }: { className?: string; style?: React.CSSProperties }) {
+  return (
+    <svg viewBox="-100 -100 200 200" className={className} style={style} aria-hidden="true">
+      <use href="#mandala" />
     </svg>
   );
 }
@@ -75,7 +89,7 @@ export default function CreamDecor({ fixedMandalas = false }: { fixedMandalas?: 
 
       {/* clip-path keeps fixed mandalas inside this band */}
       <div className={`absolute inset-0 ${fixedMandalas ? '[clip-path:inset(0)]' : ''}`}>
-        <div className={fixedMandalas ? 'fixed inset-0' : 'absolute inset-0'}>
+        <div className={fixedMandalas ? 'absolute inset-0 lg:fixed' : 'absolute inset-0'}>
           {/* inline timing: .animate-spin-slow's shorthand would beat utility classes */}
           <Mandala
             className={`animate-spin-slow absolute -left-36 w-80 text-[var(--sindoor)] opacity-[0.12] sm:-left-40 sm:w-[30rem] ${fixedMandalas ? 'top-[calc(var(--banner-h)+var(--nav-h)-4rem)]' : 'top-28'}`}
@@ -108,5 +122,18 @@ export default function CreamDecor({ fixedMandalas = false }: { fixedMandalas?: 
 
       <Toran />
     </div>
+  );
+}
+
+// A small gold curl for the card's corners; rotate it for each corner.
+export function Corner({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.3" className={`absolute h-9 w-9 text-[var(--gold)] ${className}`} aria-hidden="true">
+      <path d="M3 37V16C3 8.8 8.8 3 16 3h21" />
+      <path d="M8 37V18c0-5.5 4.5-10 10-10h19" strokeOpacity="0.55" />
+      <path d="M14 24c0-5.5 4.5-10 10-10 3 0 5 2 5 4.5S27 23 24.5 23 21 21 21 19" />
+      <circle cx="3" cy="37" r="1.6" fill="currentColor" />
+      <circle cx="37" cy="3" r="1.6" fill="currentColor" />
+    </svg>
   );
 }

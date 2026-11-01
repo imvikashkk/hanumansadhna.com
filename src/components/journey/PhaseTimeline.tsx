@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { PHASES } from '@/data/content';
 import Icon from '../Icon';
 import { Reveal } from '../Reveal';
-import { Corner } from '../WhyCard';
+import { Corner } from '../CreamDecor';
 
 // Vertical timeline whose line fills in as you scroll, lighting up each
 // stage as it is reached. Line on the left on phones, centred (with cards

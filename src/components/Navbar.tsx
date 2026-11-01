@@ -31,7 +31,7 @@ const NAV_STATS: { icon: IconName; value: string; label: string; className?: str
 // Sticks just under the fixed announcement banner.
 export default function Navbar() {
   return (
-    <header data-site-header className="sticky top-[var(--banner-h)] z-30 border-b transition-transform duration-300 border-[var(--gold)]/15 bg-gradient-to-b from-black/80 to-[#1a0604]/75 shadow-[0_10px_30px_-15px_black] backdrop-blur-md">
+    <header data-site-header className="sticky top-[var(--banner-h)] z-30 border-b transition-transform duration-300 border-[var(--gold)]/15 bg-gradient-to-b from-black/95 to-[#1a0604]/95 shadow-[0_10px_30px_-15px_black] lg:from-black/80 lg:to-[#1a0604]/75 lg:backdrop-blur-md">
       <div className="mx-auto flex h-[var(--nav-h)] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 2xl:max-w-[90rem]">
         <Logo />
 
